@@ -1,7 +1,7 @@
 import RestaurantCard from "./RestaurantCard";
-import { restaurantList } from "../../config";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 function setFunc(restaurant, searchText) {
   return restaurant?.filter((restaurant) => {
@@ -16,6 +16,7 @@ function Body() {
   const [allRestaurant, setAllRestaurant] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
+  console.log(setSearchText);
 
   async function getRestaurantData() {
     let data = await fetch(
@@ -37,7 +38,7 @@ function Body() {
 
   if (!allRestaurant) return null;
 
-  if(filteredRestaurant.length === 0) return <h1>NOt Found</h1>
+  // if(filteredRestaurant.length === 0) return <h1>NOt Found</h1>
 
   return allRestaurant.length === 0 ? (
     <Shimmer />
@@ -63,8 +64,8 @@ function Body() {
         </button>
       </div>
       <div className="body-card">
-        {filteredRestaurant?.map((res) => {
-          return <RestaurantCard {...res?.info} key={res?.info?.id} />;
+        {filteredRestaurant?.map((res, index) => {
+          return <Link to={`/res/${res.info.id}`} key={index}><RestaurantCard {...res?.info} key={res?.info?.id} /></Link>;
         })}
       </div>
     </>

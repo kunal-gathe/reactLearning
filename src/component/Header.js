@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Title() {
   return (
@@ -19,10 +20,10 @@ function Navbar() {
       <div className="nav-container">
         <Title />
         <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact</li>
-          <li>Cart</li>
+          <li><Link to='/'>Home</Link></li>
+          <li><Link to='/about'>About</Link></li>
+          <li><Link to='/contact'>Contact</Link></li>
+          <li><Link to='/cart'>Cart</Link></li>
         </ul>
         {login ? <button onClick={()=>setLogin(false)}>Log Out</button> : <button  onClick={()=>setLogin(true)}>Log In</button>}
       </div>
