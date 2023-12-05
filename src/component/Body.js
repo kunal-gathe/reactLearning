@@ -1,44 +1,17 @@
 import RestaurantCard from "./RestaurantCard";
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
-
-function setFunc(restaurant, searchText) {
-  return restaurant?.filter((restaurant) => {
-    return restaurant?.info?.name
-      .toLowerCase()
-      ?.includes(searchText.toLowerCase());
-  });
-}
+import useShowRestaurant from "../utils/useShowRestaurant";
+import { setFunc } from "../utils/helper";
+import useOnline from "../utils/useOnline";
 
 function Body() {
-  // let searchText = "KGC"
-  const [allRestaurant, setAllRestaurant] = useState([]);
-  const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
-  console.log(setSearchText);
+  const [allRestaurant, filteredRestaurant, setFilteredRestaurant] = useShowRestaurant()
 
-  async function getRestaurantData() {
-    let data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1458004&lng=79.0881546&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
-    let res = await data?.json();
-    setAllRestaurant(
-      res?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-    setFilteredRestaurant(
-      res?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-  }
-
-  useEffect(() => {
-    // Api Call
-    getRestaurantData();
-  }, []);
-
+  if(!useOnline()) return <h1>You're offline, please check your Internet</h1>
   if (!allRestaurant) return null;
-
-  // if(filteredRestaurant.length === 0) return <h1>NOt Found</h1>
 
   return allRestaurant.length === 0 ? (
     <Shimmer />

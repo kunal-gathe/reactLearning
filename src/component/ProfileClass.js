@@ -15,15 +15,15 @@
         this.setState({
             info : json
         })
-        console.log(this.props.name +  "child - componentDidMount");
+        // console.log(this.props.name +  "child - componentDidMount");
 
     }
 
     componentDidUpdate(){
-        console.log(this.props.name +  "child - componentDidUpdate");
+        // console.log(this.props.name +  "child - componentDidUpdate");
     }
     componentWillUnmount(){
-        console.log(this.props.name +  "child - componentWillUnmount");
+        // console.log(this.props.name +  "child - componentWillUnmount");
     }
 
     render(){

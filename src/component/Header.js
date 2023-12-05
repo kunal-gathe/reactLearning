@@ -24,6 +24,7 @@ function Navbar() {
           <li><Link to='/about'>About</Link></li>
           <li><Link to='/contact'>Contact</Link></li>
           <li><Link to='/cart'>Cart</Link></li>
+          <li><Link to='/instamart'>Instamart</Link></li>
         </ul>
         {login ? <button onClick={()=>setLogin(false)}>Log Out</button> : <button  onClick={()=>setLogin(true)}>Log In</button>}
       </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import "/style.css";
 import ReactDOM from "react-dom/client";
 import Navbar from "./src/component/Header";
@@ -11,8 +11,9 @@ import Contact from "./src/component/Contact";
 import RestaurantMenu from "./src/component/RestaurentMenu";
 import Profile from "./src/component/Profile";
 
+const Instamart = lazy(()=> import('./src/component/Instamart'))
+
 function App() {
-  
   return (
     <>
       <Navbar />
@@ -47,6 +48,10 @@ let appRouter = createBrowserRouter([
       {
         path: "/res/:id",
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/instamart",
+        element: <Suspense fallback={<h1>Instamart loading...</h1>}> <Instamart /> </Suspense>,
       },
     ],
   },
