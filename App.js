@@ -1,5 +1,4 @@
 import React, { useState, lazy, Suspense } from "react";
-import "/style.css";
 import ReactDOM from "react-dom/client";
 import Navbar from "./src/component/Header";
 import Body from "./src/component/Body";
@@ -10,6 +9,7 @@ import ErrorPage from "./src/component/ErrorPage";
 import Contact from "./src/component/Contact";
 import RestaurantMenu from "./src/component/RestaurentMenu";
 import Profile from "./src/component/Profile";
+import Shimmer from "./src/component/Shimmer";
 
 const Instamart = lazy(()=> import('./src/component/Instamart'))
 

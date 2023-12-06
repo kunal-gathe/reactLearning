@@ -17,17 +17,17 @@ function Body() {
     <Shimmer />
   ) : (
     <>
-      <div className="search-container">
+      <div className="flex justify-center align-middle h-20">
         <input
           type="text"
-          className="search-bar"
+          className="pl-2 border rounded-2xl h-12 mt-2"
           placeholder="Search"
           value={searchText}
           onChange={(e) => {
             setSearchText(e?.target?.value);
           }}
         />
-        <button
+        <button className= "bg-red-600 mx-4 rounded-lg text-gray-50 p-2 h-10 my-3"
           onClick={() => {
             setFilteredRestaurant(setFunc(allRestaurant, searchText));
             console.log(filteredRestaurant);
@@ -36,7 +36,7 @@ function Body() {
           Search
         </button>
       </div>
-      <div className="body-card">
+      <div className="flex flex-wrap">
         {filteredRestaurant?.map((res, index) => {
           return <Link to={`/res/${res.info.id}`} key={index}><RestaurantCard {...res?.info} key={res?.info?.id} /></Link>;
         })}
