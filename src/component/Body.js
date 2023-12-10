@@ -1,14 +1,19 @@
 import RestaurantCard from "./RestaurantCard";
-import {useState } from "react";
+import { useContext, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useShowRestaurant from "../utils/useShowRestaurant";
 import { setFunc } from "../utils/helper";
 import useOnline from "../utils/useOnline";
+import userContext from "../utils/useUserContext";
+
+
 
 function Body() {
   const [searchText, setSearchText] = useState("");
   const [allRestaurant, filteredRestaurant, setFilteredRestaurant] = useShowRestaurant()
+
+  let {user, setUser} = useContext(userContext)
 
   if(!useOnline()) return <h1>You're offline, please check your Internet</h1>
   if (!allRestaurant) return null;
@@ -27,6 +32,7 @@ function Body() {
             setSearchText(e?.target?.value);
           }}
         />
+      
         <button className= "bg-red-600 mx-4 rounded-lg text-gray-50 p-2 h-10 my-3"
           onClick={() => {
             setFilteredRestaurant(setFunc(allRestaurant, searchText));
@@ -35,10 +41,32 @@ function Body() {
         >
           Search
         </button>
+
+
+        <input
+          type="text"
+          className="pl-2 border rounded-2xl h-12 mt-2"
+          onChange={(e) => {
+            setUser({
+              ...user,
+              name: e.target.value,
+            })
+          }}
+        />
+        <input
+          type="text"
+          className="pl-2 border rounded-2xl h-12 mt-2"
+          onChange={(e) => {
+            setUser({
+              ...user,
+              email: e.target.value,
+            })
+          }}
+        />
       </div>
       <div className="flex flex-wrap">
         {filteredRestaurant?.map((res, index) => {
-          return <Link to={`/res/${res.info.id}`} key={index}><RestaurantCard {...res?.info} key={res?.info?.id} /></Link>;
+          return <Link to={`/res/${res.info.id}`} key={index}><RestaurantCard {...res?.info} key={res?.info?.id}/></Link>;
         })}
       </div>
     </>

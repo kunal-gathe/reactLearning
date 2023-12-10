@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import userContext from "../utils/useUserContext";
 
 function Title() {
   return (
@@ -14,7 +15,8 @@ function Title() {
 
 
 function Navbar() {
-  const [login, setLogin] = useState(false)
+  const [login, setLogin] = useState(false);
+  const {user} = useContext(userContext)
   return (
     <>
       <div className="flex justify-between ">
@@ -26,6 +28,7 @@ function Navbar() {
           <li className="mx-4 font-semibold"><Link to='/cart'>Cart</Link></li>
           <li className="mx-4 font-semibold"><Link to='/instamart'>Instamart</Link></li>
         </ul>
+        <h1 className="m-6 font-bold text-xl">{user.name}</h1>
         {login ? <button className= "bg-red-600 mx-4 rounded-lg text-gray-50 p-2 h-10 my-6" onClick={()=>setLogin(false)}>Log Out</button> : <button className="bg-red-600 mx-4 rounded-lg text-gray-50 p-2 h-10 my-6" onClick={()=>setLogin(true)}>Log In</button>}
       </div>
     </>

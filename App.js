@@ -10,16 +10,27 @@ import Contact from "./src/component/Contact";
 import RestaurantMenu from "./src/component/RestaurentMenu";
 import Profile from "./src/component/Profile";
 import Shimmer from "./src/component/Shimmer";
+import userContext from "./src/utils/useUserContext";
+userContext;
 
-const Instamart = lazy(()=> import('./src/component/Instamart'))
+const Instamart = lazy(() => import("./src/component/Instamart"));
+
+let userInfo = {};
 
 function App() {
+  const [user, setUser] = useState({
+    name: "Kunal Gathe",
+    email: "kunalgathe@gmail.com",
+  });
   return (
-    <>
+    <userContext.Provider value={{ 
+      user: user, 
+      setUser: setUser
+      }}>
       <Navbar />
       <Outlet />
       <Footer />
-    </>
+    </userContext.Provider>
   );
 }
 
@@ -36,10 +47,12 @@ let appRouter = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
-        children:[{
-          path: 'profile',
-          element: <Profile />
-        }]
+        children: [
+          {
+            path: "profile",
+            element: <Profile />,
+          },
+        ],
       },
       {
         path: "/contact",
@@ -51,7 +64,12 @@ let appRouter = createBrowserRouter([
       },
       {
         path: "/instamart",
-        element: <Suspense fallback={<h1>Instamart loading...</h1>}> <Instamart /> </Suspense>,
+        element: (
+          <Suspense fallback={<h1>Instamart loading...</h1>}>
+            {" "}
+            <Instamart />{" "}
+          </Suspense>
+        ),
       },
     ],
   },
