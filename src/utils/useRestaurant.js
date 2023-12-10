@@ -12,7 +12,7 @@ const useRestaurant = (id)=>{
     async function getResMenuData(){
         let data = await fetch( FETCH_MENU_DATA + id )
         let json = await data.json()
-        setRestaurant(json?.data?.cards[0]?.card?.card?.info)
+        setRestaurant(json?.data)
     }
 
     return restaurant

@@ -11,7 +11,9 @@ import RestaurantMenu from "./src/component/RestaurentMenu";
 import Profile from "./src/component/Profile";
 import Shimmer from "./src/component/Shimmer";
 import userContext from "./src/utils/useUserContext";
-userContext;
+import { Provider } from "react-redux";
+import store from "./src/utils/store";
+import Cart from "./src/component/Cart";
 
 const Instamart = lazy(() => import("./src/component/Instamart"));
 
@@ -23,6 +25,7 @@ function App() {
     email: "kunalgathe@gmail.com",
   });
   return (
+    <Provider store={store}>
     <userContext.Provider value={{ 
       user: user, 
       setUser: setUser
@@ -31,6 +34,8 @@ function App() {
       <Outlet />
       <Footer />
     </userContext.Provider>
+    </Provider>
+    
   );
 }
 
@@ -70,6 +75,10 @@ let appRouter = createBrowserRouter([
             <Instamart />{" "}
           </Suspense>
         ),
+      },
+      {
+        path: "/cart",
+        element: <Cart />
       },
     ],
   },
