@@ -9,8 +9,8 @@ const useShowRestaurant = () => {
   async function getRestaurantData() {
     let data = await fetch(RESTAURANT_DATA_URL);
     let res = await data?.json();
-    setAllRestaurant(res?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    setFilteredRestaurant(res?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setAllRestaurant(res?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setFilteredRestaurant(res?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   }
 
   useEffect(() => {

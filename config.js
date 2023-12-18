@@ -321,4 +321,4 @@ export const restaurantList = [
       },
     },
   ];
- export const RESTAURANT_DATA_URL = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.933402&lng=79.3166515&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"; 
+ export const RESTAURANT_DATA_URL = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1516957&lng=79.0902124&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"; 
