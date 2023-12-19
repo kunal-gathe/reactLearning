@@ -39,7 +39,7 @@ function RestaurantMenu() {
           </div>
         </div>
 
-        <div className="p-5" data-testid="menu">
+        <div className="p-5" data-testid="menu" key={Math.random()}>
           {restaurant?.cards[2].groupedCard.cardGroupMap.REGULAR.cards[1].card.card.itemCards.map(
             (e, i) => {
               return (
